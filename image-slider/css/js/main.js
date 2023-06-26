@@ -4,12 +4,15 @@ const options = document.querySelectorAll('.option');
 const slides = document.querySelectorAll('.img');
 
 let index = 1;
+let op_index =0;
 let size = slides[index].clientWidth;
 
 update();
 
 function update() {
   slider.style.transform = `translateX(${-size * index}px)`;
+
+
 }
 
 function slide() {
@@ -25,6 +28,11 @@ function btnCheck() {
   }
   slide();
 }
+function optionFunc() {
+    let i =number(this.getAttribute ('option-index'));
+    index = i+1;
+    slide();
+}   
 slider.addEventListener('transitionend', () => {
     if (slides[index].id === "last") {
       slider.style.transition = "none";
@@ -38,4 +46,5 @@ slider.addEventListener('transitionend', () => {
   });
   
 
-buttons.forEach(btn => btn.addEventListener('click', btnCheck));
+buttons.forEach(btn=> btn.addEventListener('click', btnCheck));
+options.forEach(option=> option.addEventListener('click', optionFunc));
